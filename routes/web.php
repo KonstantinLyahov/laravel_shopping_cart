@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,3 +16,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [ProductController::class, 'getIndexPage'])->name('product.index');
+
+Route::middleware('guest')->group(function(){
+	Route::get('/signup', [AuthController::class, 'getSignupPage'])->name('signup.page');
+	Route::post('/signup', [AuthController::class, 'postSignup'])->name('signup.post');
+
+	Route::get('/signin', [AuthController::class, 'getSigninPage'])->name('signin.page');
+	Route::post('/signin', [AuthController::class, 'postSignin'])->name('signin.post');
+});
+
+Route::middleware('auth')->group(function(){
+	Route::get('/profile', [AuthController::class, 'getProfilePage'])->name('profile.page');
+	Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+});

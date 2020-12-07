@@ -19,10 +19,15 @@
 					<span>User account</span>
 				</a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-					<a class="dropdown-item" href="#">Action</a>
-					<a class="dropdown-item" href="#">Another action</a>
-					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="#">Something else here</a>
+					@if (Auth::check())
+					<a class="dropdown-item" href="{{ route('profile.page') }}">Profile</a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="{{ route('logout') }}">Logout</a>
+					@else
+						<a class="dropdown-item" href="{{ route('signin.page') }}">Sign In</a>
+						<a class="dropdown-item" href="{{ route('signup.page') }}">Sign Up</a>
+					@endif
+					
 				</div>
 			</li>
 		</ul>
