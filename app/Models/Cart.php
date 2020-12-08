@@ -32,4 +32,23 @@ class Cart
 		$this->totalQuantity++;
 		$this->totalPrice += $item->price;
 	}
+
+	public function reduce($id, $all)
+	{
+		if(array_key_exists($id, $this->items)){
+			if($all) {
+				$this->totalPrice -= $this->items[$id]['price'];
+				$this->totalQuantity -= $this->items[$id]['quantity'];
+				unset($this->items[$id]);
+			} else {
+				$this->items[$id]['quantity']--;
+				$this->items[$id]['price'] -= $this->items[$id]['item']->price;
+				$this->totalQuantity--;
+				$this->totalPrice -= $this->items[$id]['item']->price;
+				if($this->items[$id]['quantity']==0) {
+					unset($this->items[$id]);
+				}
+			}
+		}
+	}
 }

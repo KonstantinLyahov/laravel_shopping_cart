@@ -31,4 +31,19 @@ class ProductController extends Controller
         $cart = new Cart($oldCart);
         return view('shop.shopping-cart', ['products' => $cart->items, 'totalPrice' => $cart->totalPrice]);    
     }
+    public function reduce($id, $all=false)
+    {
+        if(session('cart')) {
+            $oldCart = session('cart');
+            $cart = new Cart($oldCart);
+            $cart->reduce($id, $all);
+            session(['cart' => $cart]);
+        }		
+        return redirect()->back();
+    }
+    public function clearShoppingCart()
+    {
+        session()->forget('cart');
+        return redirect()->back();
+    }
 }
