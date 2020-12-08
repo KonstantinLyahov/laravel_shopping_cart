@@ -17,6 +17,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [ProductController::class, 'getIndexPage'])->name('product.index');
 
+Route::get('/add-to-cart/{id}', [ProductController::class, 'getAddToCart'])->name('product.addToCart');
+Route::get('/shopping-cart', [ProductController::class, 'getShoppingCartPage'])->name('product.shoppingCart');
+
 Route::middleware('guest')->group(function(){
 	Route::get('/signup', [AuthController::class, 'getSignupPage'])->name('signup.page');
 	Route::post('/signup', [AuthController::class, 'postSignup'])->name('signup.post');

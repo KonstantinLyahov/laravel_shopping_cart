@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-	<a class="navbar-brand" href="#">Navbar</a>
+	<a class="navbar-brand" href="{{ route('product.index') }}">Navbar</a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
 		aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
@@ -7,9 +7,10 @@
 	<div class="collapse navbar-collapse" id="navbarSupportedContent">
 		<ul class="navbar-nav ml-auto">
 			<li class="nav-item">
-				<a class="nav-link" href="#">
+				<a class="nav-link" href="{{ route('product.shoppingCart') }}">
 					<i class="fas fa-shopping-cart"></i>
 					<span>Shopping cart</span>
+					<span class="badge badge-dark">{{ session('cart')? session('cart')->totalQuantity: '' }}</span>
 				</a>
 			</li>
 			<li class="nav-item dropdown">

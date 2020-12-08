@@ -16,7 +16,7 @@ Laravel shopping cart
 					<p class="card-text">{{ $product->description }}</p>
 						<div class="d-flex justify-content-between">
 							<div class="price">{{ $product->price }}$</div>
-							<a href="#" class="btn btn-success">Add to cart</a>
+							<a href="{{ route('product.addToCart', ['id' => $product->id]) }}" class="btn btn-success">Add to cart</a>
 						</div>
 				</div>
 			</div>
